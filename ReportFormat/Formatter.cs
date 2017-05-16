@@ -20,9 +20,9 @@ namespace Nsar.Nodes.NwccScan.ReportFormat
             //this.parser = parser;
         }
 
-        public List<ITemperalMeasurement> ParseData(string data)
+        public List<ITemporalMeasurement> ParseData(string data)
         {
-            List<ITemperalMeasurement> measurements = new List<ITemperalMeasurement>();
+            List<ITemporalMeasurement> measurements = new List<ITemporalMeasurement>();
 
             // TODO: Figure out how to use dependency injection with this
             using (TextReader reader = new StringReader(data))
@@ -77,7 +77,7 @@ namespace Nsar.Nodes.NwccScan.ReportFormat
 
                         // Each column for a row is a measurment with a given datetime
                         measurements.Add(
-                            new TemperalMeasurement(
+                            new TemporalMeasurement(
                                 //Double.Parse(row[i], System.Globalization.NumberStyles.AllowDecimalPoint, CultureInfo.InvariantCulture), 
                                 value,
                                 units,
@@ -129,7 +129,7 @@ namespace Nsar.Nodes.NwccScan.ReportFormat
             return headers;
         }
 
-        private List<ITemperalMeasurement> convertUnits(List<ITemperalMeasurement> measurements)
+        private List<ITemporalMeasurement> convertUnits(List<ITemporalMeasurement> measurements)
         {
             // TODO: Ojo, very hardcoded function
 
@@ -143,7 +143,7 @@ namespace Nsar.Nodes.NwccScan.ReportFormat
                 double newValue = ws.NumericalValue * (1D / 60D) * (1D / 60D) * (1000D / 1D);
                 DateTime dt = ws.DateTime;
 
-                result.Add(new TemperalMeasurement(
+                result.Add(new TemporalMeasurement(
                     newValue, newUnit, ws.Phenomenon, ws.DateTime));
             }
 

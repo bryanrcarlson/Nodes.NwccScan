@@ -19,10 +19,10 @@ namespace ReportFormat.Tests
 
             string pathToExpected = Path.Combine(AppContext.BaseDirectory, @"Assets\ResultsNoComments.txt");
             string dataExpected = File.ReadAllText(pathToExpected);
-            List<ITemperalMeasurement> expected = sut.ParseData(dataExpected);
+            List<ITemporalMeasurement> expected = sut.ParseData(dataExpected);
 
             // ACT
-            List<ITemperalMeasurement> results = sut.ParseData(data);
+            List<ITemporalMeasurement> results = sut.ParseData(data);
 
             // ASSERT
             Assert.Equal(expected[0].NumericalValue, results[0].NumericalValue);
